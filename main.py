@@ -31,9 +31,9 @@ def is_valid_email(string: str) -> bool:
 
 # Races parameters (strength = stn, wisdom = wis, agility = agl, intellect = inl)
 race_stats = {
-    'human': {'stn':3, 'wis':3, 'agl':3, 'inl':3},
-    'elf': {'stn':2, 'wis':4, 'agl':4, 'inl':2},
-    'dworf': {'stn':4, 'wis':2, 'agl':3, 'inl':3},
+    'human': {'stn': 3, 'end': 3, 'agl': 3, 'inl': 3},
+    'elf': {'stn': 2, 'end': 2, 'agl': 4, 'inl': 4},
+    'dworf': {'stn': 4, 'end': 4, 'agl': 2, 'inl': 2},
 }
 
 
