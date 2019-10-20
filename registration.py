@@ -50,14 +50,14 @@ def choose_class() -> str:
     print("Please choose you class")
     answer_msg = "type ok to accept or anything else to decline\n"
 
-    for i in character.class_stats:
-        print("Do you want to be a ", i.capitalize(), "with bonuses: ", character.class_stats[i], "?")
+    for i in character.get_classes():
+        print("Do you want to be a ", i.capitalize(), "with bonuses: ", character.get_class_stats(i), "?")
         answer = input(answer_msg)
         if answer == "ok":
             print("Congratulations, you are", i)
             return i
 
-    rand_class = random.choice(character.class_stats)
+    rand_class = random.choice(character.get_classes)
     print("You got a random class, its", rand_class)
     return rand_class
 
