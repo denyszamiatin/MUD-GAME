@@ -1,7 +1,12 @@
+import random
 import re
+import main
+
+email_pattern = re.compile(r"^.{1,64}@[A-Za-z0-9\._-]+\.[a-zA-Z]*$")
+EMAIL_MAX_LENGTH = 320
 
 
-def generate_name():
+def generate_name() -> str:
 
     """TODO - implement generation of name:
     Имя начинается с большой буквы
@@ -10,7 +15,7 @@ def generate_name():
     return "DummyName"
 
 
-def choose_race():
+def choose_race() -> str:
 
     """TODO - implement race choice :
     При регистрации новый игрок должен выбрать расу, к которой будет принадлежать.
@@ -20,8 +25,21 @@ def choose_race():
     return "elf"
 
 
-email_pattern = re.compile(r"^.{1,64}@[A-Za-z0-9\._-]+\.[a-zA-Z]*$")
-EMAIL_MAX_LENGTH = 320
+def choose_class() -> str:
+
+    print("Please choose you class")
+    answer_msg = "type ok to accept or anything else to decline "
+
+    for i in main.class_stats:
+        print("Do you want to be a ", i.capitalize(), "with bonuses: ", main.class_stats[i], "?")
+        answer = input(answer_msg)
+        if answer == "ok":
+            print("Congratulations, you are", i)
+            return main.class_stats[i]
+
+    rand_class = random.choice(main.class_stats)
+    print("You got a random class, its", rand_class)
+    return rand_class
 
 
 def is_valid_email(string: str) -> bool:

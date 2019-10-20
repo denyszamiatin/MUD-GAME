@@ -11,6 +11,11 @@ race_stats = {
     'dworf': {'stn': 4, 'vit': 4, 'agl': 2, 'inl': 2},
 }
 
+class_stats = {
+    'warrior': {'stn': 2, 'vit': 1, 'agl': 0, 'inl': 0},
+    'archer': {'stn': 0, 'vit': 1, 'agl': 2, 'inl': 0},
+    'wizard': {'stn': 0, 'vit': 0, 'agl': 0, 'inl': 3},
+}
 
 def get_race_stats(race: str):
     """Return race statistics
