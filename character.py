@@ -26,3 +26,12 @@ def get_race_stats(race: str):
         return race_stats[race]
     except KeyError:
         raise TypeError("Unknown race")
+
+
+def get_class_stats(_class: str):
+    """Return class statistics
+    """
+    try:
+        return class_stats[_class]
+    except KeyError:
+        raise TypeError("Unknown class")
