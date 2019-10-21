@@ -97,4 +97,3 @@ def is_valid_email(string: str) -> bool:
     True
     """
     return len(string) <= EMAIL_MAX_LENGTH and bool(email_pattern.match(string))
-
