@@ -1,6 +1,6 @@
 import random
 import re
-import character as character
+import character
 
 email_pattern = re.compile(r"^.{1,64}@[A-Za-z0-9\._-]+\.[a-zA-Z]*$")
 EMAIL_MAX_LENGTH = 320
@@ -8,13 +8,7 @@ EMAIL_MAX_LENGTH = 320
 
 def registration() -> dict:
 
-    print("Welcome to our game. Lets create your character")
-    while True:
-        email = input("Please input your email\n")
-        if is_valid_email(email):
-            character.character["email"] = email
-            break
-        print("Incorrect email. Please try again")
+    character.character["email"] = input_email()
 
     character.character["name"] = generate_name()
 
@@ -23,6 +17,15 @@ def registration() -> dict:
     character.character["class"] = choose_class()
 
     return character.character
+
+
+def input_email():
+    print("Welcome to our game. Lets create your character")
+    while True:
+        email = input("Please input your email\n")
+        if is_valid_email(email):
+            return email
+        print("Incorrect email. Please try again")
 
 
 def generate_name() -> str:
@@ -45,21 +48,31 @@ def choose_race() -> str:
     return "elf"
 
 
-def choose_class() -> str:
-
+def input_class():
     print("Please choose you class")
-    answer_msg = "type ok to accept or anything else to decline\n"
-
-    for i in character.get_classes():
-        print("Do you want to be a ", i.capitalize(), "with bonuses: ", character.get_class_stats(i), "?")
-        answer = input(answer_msg)
+    for klass in character.get_classes():
+        print("Do you want to be a {} with bonuses: {}?".format(
+            klass.capitalize(),
+            character.get_class_stats(klass)
+        ))
+        answer = input("type ok to accept or anything else to decline\n")
         if answer == "ok":
-            print("Congratulations, you are", i)
-            return i
+            print("Congratulations, you are", klass)
+            return klass
+    return None
 
-    rand_class = random.choice(character.get_classes)
-    print("You got a random class, its", rand_class)
-    return rand_class
+
+def get_random_class():
+    klass = random.choice(character.get_classes())
+    print("You got a random class, its", klass)
+    return klass
+
+
+def choose_class() -> str:
+    klass = input_class()
+    if klass is None:
+        klass = get_random_class()
+    return klass
 
 
 def is_valid_email(string: str) -> bool:

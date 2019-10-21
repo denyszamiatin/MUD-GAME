@@ -6,16 +6,20 @@ character = {
 }
 
 # Races parameters (strength = stn, Endurance = end, agility = agl, intellect = inl)
-__race_stats = {
-    'human': {'stn': 3, 'vit': 3, 'agl': 3, 'inl': 3},
-    'elf': {'stn': 2, 'vit': 2, 'agl': 4, 'inl': 4},
-    'dworf': {'stn': 4, 'vit': 4, 'agl': 2, 'inl': 2},
+STN, VIT, AGL, INL = range(4)
+
+
+_race_stats = {
+    'human': (3, 3, 3, 3),
+    'elf': (2, 2, 4, 4),
+    'dworf': (4, 4, 2, 2),
 }
 
-__class_stats = {
-    'warrior': {'stn': 2, 'vit': 1, 'agl': 0, 'inl': 0},
-    'archer': {'stn': 0, 'vit': 1, 'agl': 2, 'inl': 0},
-    'wizard': {'stn': 0, 'vit': 0, 'agl': 0, 'inl': 3},
+
+_class_stats = {
+    'warrior': (2, 1, 0, 0),
+    'archer': (0, 1, 2, 0),
+    'wizard': (0, 0, 0, 3),
 }
 
 
@@ -23,16 +27,16 @@ def get_race_stats(race: str):
     """Return race statistics
     """
     try:
-        return __race_stats[race]
+        return _race_stats[race]
     except KeyError:
         raise TypeError("Unknown race")
 
 
-def get_class_stats(_class: str):
+def get_class_stats(klass: str):
     """Return class statistics
     """
     try:
-        return __class_stats[_class]
+        return _class_stats[klass]
     except KeyError:
         raise TypeError("Unknown class")
 
@@ -40,5 +44,4 @@ def get_class_stats(_class: str):
 def get_classes() -> dict:
     """Return class statistics
     """
-    return __class_stats
-
+    return _class_stats.keys()
