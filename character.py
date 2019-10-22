@@ -57,8 +57,7 @@ def get_character_stat(stat_name):
 
 
 def set_character_stat(stat_name, stat_value):
-    character["stats"] = stat_value
-    #TODO - rewrite, it doesnt work
+    character["stats"][stat_name] = stat_value
 
 
 def get_race_stats(race: str):
