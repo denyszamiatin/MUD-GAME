@@ -4,9 +4,9 @@ character = {
 
     "name": "",
     "race": "",
-    "class": "",
+    "klass": "",
     "health": "",
-    "stats": "",
+    "stats": (0, 0, 0, 0),
     "email": "",
 }
 
@@ -26,6 +26,39 @@ _class_stats = {
     'archer': (0, 1, 2, 0),
     'wizard': (0, 0, 0, 3),
 }
+
+
+def get_character_class():
+    return character["klass"]
+
+
+def get_character_race():
+    return character["race"]
+
+
+def get_character_health():
+    return character["health"]
+
+
+def set_character_health(amount):
+    character["health"] = amount
+
+
+def get_character_stats():
+    return character["stats"]
+
+
+def set_character_stats(stats):
+    character["stats"] = stats
+
+
+def get_character_stat(stat_name):
+    return character["stats"][stat_name]
+
+
+def set_character_stat(stat_name, stat_value):
+    character["stats"] = stat_value
+    #TODO - rewrite, it doesnt work
 
 
 def get_race_stats(race: str):

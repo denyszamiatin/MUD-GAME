@@ -4,6 +4,7 @@ import character
 
 email_pattern = re.compile(r"^.{1,64}@[A-Za-z0-9\._-]+\.[a-zA-Z]*$")
 EMAIL_MAX_LENGTH = 320
+VIT_HEALTH_MULTIPLIER = 10
 
 
 def registration() -> dict:
@@ -16,7 +17,7 @@ def registration() -> dict:
 
     character.character["class"] = choose_class()
 
-    # TODO - add method to count result of stats race + class
+    character.character["health"] = character.get_character_stat(character.VIT) * VIT_HEALTH_MULTIPLIER
 
     return character.character
 
@@ -46,6 +47,10 @@ def choose_race() -> str:
     При регистрации новый игрок должен выбрать расу, к которой будет принадлежать.
     Необходимо реализовать функцию,
     которая позволит пользователю выбрать расу и произвести валидацию выбора"""
+    # TODO - rewrite to give stats of chosen race to set_character_stats
+    character.set_character_stats(
+        [sum(x) for x in zip(character.get_character_stats(), character.get_race_stats("elf"), )]
+    )
     print("You got race: Elf")
     return "elf"
 
@@ -60,6 +65,9 @@ def input_class():
         answer = input("type ok to accept or anything else to decline\n")
         if answer == "ok":
             print("Congratulations, you are", klass)
+            character.set_character_stats(
+                [sum(x) for x in zip(character.get_character_stats(), character.get_class_stats(klass),)]
+            )
             return klass
     return None
 
