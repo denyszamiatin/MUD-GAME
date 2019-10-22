@@ -10,7 +10,7 @@ character = {
     "email": "",
 }
 
-# Races parameters (strength = stn, Endurance = end, agility = agl, intellect = inl)
+# Races parameters (strength = STN, Endurance = VIT, agility = AGL, intellect = INL)
 STN, VIT, AGL, INL = range(4)
 
 
