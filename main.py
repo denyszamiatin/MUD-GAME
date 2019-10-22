@@ -7,5 +7,5 @@ else:
     registration.registration()
     print(character.character)
 
-# character.save_game()
+
 
