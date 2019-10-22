@@ -54,7 +54,7 @@ def choose_race() -> str:
             character.set_character_stats(
                 [sum(x) for x in zip(character.get_character_stats(), character.get_race_stats(race), )]
             )
-        return race
+            return race
     # TODO - add random choise
     return "elf"
 
