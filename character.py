@@ -1,7 +1,7 @@
 import pickle
+import typing
 
 character = {
-
     "name": "",
     "race": "",
     "klass": "",
@@ -10,18 +10,19 @@ character = {
     "email": "",
 }
 
-# Races parameters (strength = STN, Endurance = VIT, agility = AGL, intellect = INL)
+# Races parameters
+# (strength = STN, Endurance = VIT, agility = AGL, intellect = INL)
 STN, VIT, AGL, INL = range(4)
 
 
-_race_stats = {
+_RACE_STATS = {
     'human': (3, 3, 3, 3),
     'elf': (2, 2, 4, 4),
     'dworf': (4, 4, 2, 2),
 }
 
 
-_class_stats = {
+_CLASS_STATS = {
     'warrior': (2, 1, 0, 0),
     'archer': (0, 1, 2, 0),
     'wizard': (0, 0, 0, 3),
@@ -53,10 +54,7 @@ def set_character_stats(stats):
 
 
 def update_character_stats(stats):
-    character['stats'] = \
-        [sum(x) for x in zip(character.get_character_stats(),
-                             stats, )
-    ]
+    character['stats'] = [sum(x) for x in zip(get_character_stats(), stats, )]
 
 
 def get_character_stat(stat_name):
@@ -71,7 +69,7 @@ def get_race_stats(race: str):
     """Return race statistics
     """
     try:
-        return _race_stats[race]
+        return _RACE_STATS[race]
     except KeyError:
         raise TypeError("Unknown race")
 
@@ -80,21 +78,21 @@ def get_class_stats(klass: str):
     """Return class statistics
     """
     try:
-        return _class_stats[klass]
+        return _CLASS_STATS[klass]
     except KeyError:
         raise TypeError("Unknown class")
 
 
-def get_classes() -> dict:
+def get_classes() -> typing.Iterable[str]:
     """Return class statistics
     """
-    return _class_stats.keys()
+    return _CLASS_STATS.keys()
 
 
-def get_races() -> dict:
+def get_races() -> typing.Iterable[str]:
     """Return class statistics
     """
-    return _race_stats.keys()
+    return _RACE_STATS.keys()
 
 
 def save_game():

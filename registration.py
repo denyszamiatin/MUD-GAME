@@ -2,7 +2,7 @@ import random
 import re
 import character
 
-email_pattern = re.compile(r"^.{1,64}@[A-Za-z0-9\._-]+\.[a-zA-Z]*$")
+EMAIL_PATTERN = re.compile(r"^.{1,64}@[A-Za-z0-9\._-]+\.[a-zA-Z]*$")
 EMAIL_MAX_LENGTH = 320
 VIT_HEALTH_MULTIPLIER = 10
 
@@ -17,7 +17,8 @@ def registration() -> dict:
 
     character.character["class"] = choose_class()
 
-    character.character["health"] = character.get_character_stat(character.VIT) * VIT_HEALTH_MULTIPLIER
+    character.character["health"] = \
+        character.get_character_stat(character.VIT) * VIT_HEALTH_MULTIPLIER
 
     return character.character
 
@@ -91,7 +92,8 @@ def is_valid_email(string: str) -> bool:
     TODO - Not implemented:
     name: - ! # $ % & ‘ * + — / =? ^ _ ` { | } ~ a-zA-Z0-9-.
     name: . ! # $ % & ‘ * + — / =? ^ _ ` { | } ~  cant be first or last.
-    name: . ! # $ % & ‘ * + — / =? ^ _ ` { | } ~  cant appear twice or more in row
+    name: . ! # $ % & ‘ * + — / =? ^ _ ` { | } ~
+            cant appear twice or more in row
     name: only one .
     domain: at least 2 [a-zA-Z] after last dot
 
@@ -106,4 +108,5 @@ def is_valid_email(string: str) -> bool:
     >>> is_valid_email("a@a.b.com")
     True
     """
-    return len(string) <= EMAIL_MAX_LENGTH and bool(email_pattern.match(string))
+    return len(string) <= EMAIL_MAX_LENGTH and \
+        bool(EMAIL_PATTERN.match(string))
