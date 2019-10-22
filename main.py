@@ -1,5 +1,11 @@
 import registration
 import character
 
-registration.registration()
-print(character.character)
+if character.load_game():
+    print(character.character)
+else:
+    registration.registration()
+    print(character.character)
+
+# character.save_game()
+

@@ -1,8 +1,13 @@
+import pickle
+
 character = {
-    "email": "",
+
     "name": "",
     "race": "",
     "class": "",
+    "health": "",
+    "stats": "",
+    "email": "",
 }
 
 # Races parameters (strength = stn, Endurance = end, agility = agl, intellect = inl)
@@ -45,3 +50,18 @@ def get_classes() -> dict:
     """Return class statistics
     """
     return _class_stats.keys()
+
+
+def save_game():
+    with open('savefile.dat', 'wb') as f:
+        pickle.dump([character, ], f, protocol=2)
+
+
+def load_game() -> bool:
+    global character
+    try:
+        with open('savefile.dat', 'rb') as f:
+            character = pickle.load(f)
+            return True
+    except FileNotFoundError:
+        return False

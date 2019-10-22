@@ -16,6 +16,8 @@ def registration() -> dict:
 
     character.character["class"] = choose_class()
 
+    # TODO - add method to count result of stats race + class
+
     return character.character
 
 
