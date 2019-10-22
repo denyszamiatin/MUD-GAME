@@ -4,7 +4,6 @@ import character
 
 email_pattern = re.compile(r"^.{1,64}@[A-Za-z0-9\._-]+\.[a-zA-Z]*$")
 EMAIL_MAX_LENGTH = 320
-VIT_HEALTH_MULTIPLIER = 10
 
 
 def registration() -> dict:
@@ -17,7 +16,7 @@ def registration() -> dict:
 
     character.character["class"] = choose_class()
 
-    character.character["health"] = character.get_character_stat(character.VIT) * VIT_HEALTH_MULTIPLIER
+    character.character["health"] = character.set_character_full_health()
 
     return character.character
 

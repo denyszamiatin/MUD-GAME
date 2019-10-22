@@ -1,5 +1,3 @@
-import pickle
-
 character = {
 
     "name": "",
@@ -27,6 +25,7 @@ _class_stats = {
     'wizard': (0, 0, 0, 3),
 }
 
+VIT_HEALTH_MULTIPLIER = 10
 
 def get_character_class():
     return character["klass"]
@@ -67,6 +66,10 @@ def set_character_stat(stat_name, stat_value):
     character["stats"][stat_name] = stat_value
 
 
+def set_character_full_health():
+    get_character_stat(VIT) * VIT_HEALTH_MULTIPLIER
+
+
 def get_race_stats(race: str):
     """Return race statistics
     """
@@ -97,16 +100,3 @@ def get_races() -> dict:
     return _race_stats.keys()
 
 
-def save_game():
-    with open('savefile.dat', 'wb') as f:
-        pickle.dump([character, ], f, protocol=2)
-
-
-def load_game() -> bool:
-    global character
-    try:
-        with open('savefile.dat', 'rb') as f:
-            character = pickle.load(f)
-            return True
-    except FileNotFoundError:
-        return False
