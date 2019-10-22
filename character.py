@@ -6,7 +6,7 @@ character = {
     "race": "",
     "klass": "",
     "health": "",
-    "stats": (0, 0, 0, 0),
+    "stats": [0, 0, 0, 0],
     "email": "",
 }
 
@@ -52,6 +52,13 @@ def set_character_stats(stats):
     character["stats"] = stats
 
 
+def update_character_stats(stats):
+    character['stats'] = \
+        [sum(x) for x in zip(character.get_character_stats(),
+                             stats, )
+    ]
+
+
 def get_character_stat(stat_name):
     return character["stats"][stat_name]
 
@@ -82,6 +89,7 @@ def get_classes() -> dict:
     """Return class statistics
     """
     return _class_stats.keys()
+
 
 def get_races() -> dict:
     """Return class statistics

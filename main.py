@@ -6,8 +6,3 @@ if character.load_game():
 else:
     registration.registration()
     print(character.character)
-
-
-
-
-

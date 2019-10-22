@@ -51,9 +51,7 @@ def choose_race() -> str:
         answer = input("type ok to accept or anything else to decline\n")
         if answer == "ok":
             print("Congratulations, you are", race.capitalize())
-            character.set_character_stats(
-                [sum(x) for x in zip(character.get_character_stats(), character.get_race_stats(race), )]
-            )
+            character.update_character_stats(character.get_race_stats(race))
             return race
     # TODO - add random choise
     return "elf"
@@ -69,9 +67,7 @@ def input_class():
         answer = input("type ok to accept or anything else to decline\n")
         if answer == "ok":
             print("Congratulations, you are", klass.capitalize())
-            character.set_character_stats(
-                [sum(x) for x in zip(character.get_character_stats(), character.get_class_stats(klass),)]
-            )
+            character.update_character_stats(character.get_class_stats(klass))
             return klass
     return None
 
