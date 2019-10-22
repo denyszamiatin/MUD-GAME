@@ -15,7 +15,7 @@ def registration() -> dict:
 
     character.character["race"] = choose_race()
 
-    character.character["class"] = choose_class()
+    character.character["klass"] = choose_class()
 
     character.character["health"] = \
         character.get_character_stat(character.VIT) * VIT_HEALTH_MULTIPLIER
