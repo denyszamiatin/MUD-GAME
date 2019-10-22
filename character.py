@@ -83,6 +83,11 @@ def get_classes() -> dict:
     """
     return _class_stats.keys()
 
+def get_races() -> dict:
+    """Return class statistics
+    """
+    return _race_stats.keys()
+
 
 def save_game():
     with open('savefile.dat', 'wb') as f:

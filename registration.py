@@ -42,16 +42,20 @@ def generate_name() -> str:
 
 
 def choose_race() -> str:
-
-    """TODO - implement race choice :
-    При регистрации новый игрок должен выбрать расу, к которой будет принадлежать.
-    Необходимо реализовать функцию,
-    которая позволит пользователю выбрать расу и произвести валидацию выбора"""
-    # TODO - rewrite to give stats of chosen race to set_character_stats
-    character.set_character_stats(
-        [sum(x) for x in zip(character.get_character_stats(), character.get_race_stats("elf"), )]
-    )
-    print("You got race: Elf")
+    print("Please choose you race")
+    for race in character.get_races():
+        print("Do you want to be a {} with bonuses: {}?".format(
+            race.capitalize(),
+            character.get_race_stats(race)
+        ))
+        answer = input("type ok to accept or anything else to decline\n")
+        if answer == "ok":
+            print("Congratulations, you are", race)
+            character.set_character_stats(
+                [sum(x) for x in zip(character.get_character_stats(), character.get_race_stats(race), )]
+            )
+        return race
+    # TODO - add random choise
     return "elf"
 
 
